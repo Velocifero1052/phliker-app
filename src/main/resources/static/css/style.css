@@ -1,0 +1,121 @@
+header{
+    display:flex;
+    height: 100px;
+    justify-content: space-between;
+    align-items: stretch;
+    background: #424242;
+    align-content: baseline;
+    vertical-align: center;
+    flex-flow:row;
+    margin-bottom:50px;
+}
+footer{
+    height: 100px;
+
+}
+.HeaderDiv{
+    width: 30%;
+}
+.plus{
+    border-radius: 100%;
+    background-color: #FF8000;
+    display: block;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    width:40px;
+    height: 40px;
+    border: unset;
+    content:"\2b";
+}
+.plus:hover{
+    box-shadow: -5px 5px 5px 5px #6E6E6E;
+}
+.row1{
+    padding:20px;
+}
+.section1{
+
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #E6E6E6;
+    position:relative;
+}
+h1{
+    color:white;
+    font-family: "Abyssinica SIL";
+    height: 40px;
+    font-size:4.5rem !important;
+}
+button, input{
+    border-radius: unset;
+    height: 30px;
+
+}
+tr{
+    width:100%;
+}
+td{
+    width: 12.5%;
+    padding: 1.5px 1.5px 1.5px 1.5px;
+}
+form{
+    float:right;
+
+}
+.search{
+    height:4.5rem;
+    font-family: "Abyssinica SIL";
+    font-size: 20px;
+    border-style: unset;
+    border-radius:2px;
+}
+.self-ref{
+    text-decoration: none !important;
+}
+footer{
+    position:relative;
+}
+.pageNumCenter{
+    background-color: #5882FA;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    color: white;
+    text-align: center;
+}
+.ref-center{
+
+    font-size: 15px;
+}
+.pageNumBottom{
+    position: absolute;
+    right: 47%;
+    background-color: #5882FA;
+    height: 20px;
+    width: 20px;
+    border-radius: 100%;
+    top: 0%;
+    padding-top:3px;
+    color: white;
+}
+.input-data{
+    padding-left: 6px;
+    margin-right: -4px;
+}
+.search-button{
+    background-color: #58ACFA;
+    color: #ffffff;
+    width: 80px !important;
+}
+img{
+    width: 100%;
+    height:175px;
+    display: block;
+    object-fit: cover;
+    cursor: pointer;
+}
+img:hover{
+    box-shadow: -10px 10px 10px 10px #6E6E6E;
+    opacity: 0.9;
+}
