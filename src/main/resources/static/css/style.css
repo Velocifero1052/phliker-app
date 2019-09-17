@@ -8,6 +8,7 @@ header{
     vertical-align: center;
     flex-flow:row;
     margin-bottom:50px;
+    padding-top: 25px;
 }
 footer{
     height: 100px;
