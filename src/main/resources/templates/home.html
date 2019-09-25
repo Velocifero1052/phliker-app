@@ -16,7 +16,6 @@
 <body>
 
 <header>
-
     <div class="container">
         <div class="row align-items-center">
             <div class="col-6">
@@ -31,27 +30,19 @@
         </div>
     </div>
 </header>
+
 <section class="section1">
-
         <section style="display:flex; flex-direction: column; align-items: flex-end">
-
             <div class="pageNumCenter" style="margin-right:30px">2</div>
             <a href="#" class="ref-center" th:text="'View all ' + ${#numbers.formatInteger(total, 3, 'COMMA')}"> </a>
         </section>
-
     </div>
-
     <table>
-
         <tr th:each="list: ${photoList}">
             <td th:each="photo: ${list}" ><a th:href="${photo}"> <img th:src="${photo}"></img></a></td>
         </tr>
-
     </table>
-
 </section>
-
-
 
 <footer class="text-center">
 <!--    <form th:action="@{/}" method="GET" >-->
@@ -64,16 +55,27 @@
     </form>
     <div class="pageNumBottom text-center" th:text="${curPage}"></div>
 </footer>
-<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
-<script src="jquery.picEyes.js"></script>
+<button th:onclick="cl()">onclick text</button>
 
+<div>
+    <p class="greeting-id">The ID is </p>
+    <p class="greeting-content">The content is </p>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
-    function display_function(large_id, title, region, place){
-        console.log("LargeUrl:" + large_id +"\nCountry: " + title+  "\nRegion: "+ region +"\nPlace: " + place);
+    function cl() {
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:8080/greeting"
+            }).then(function (data) {
+                $('.greeting-id').append(data.id);
+                $('.greeting-content').append(data.content);
+            });
+        });
     }
 </script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <script src="js/bootstrap.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

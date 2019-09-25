@@ -31,7 +31,6 @@ public class HomeController {
         if (text == null) {
             return "home";
         }
-
         if(!searched.equals(text)){
             mPageNumber = 1;
             searched = text;
