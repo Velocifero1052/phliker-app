@@ -23,7 +23,7 @@
                 <a th:href="@{/searchWindow.html}" class="self-ref"><h1>phliker</h1></a>
             </div>
             <div class="col-6">
-                <form  action="#" th:action="@{/}" th:object="${searchText}" method="post">
+                <form  action="#" th:action="@{/}" th:object="${searchText}" method="get">
                     <input type="search" th:field="*{text}" class="search input-data"/>
                     <button type="submit" class="search search-button">GO</button>
                 </form>
@@ -34,6 +34,7 @@
 <section class="section1">
 
         <section style="display:flex; flex-direction: column; align-items: flex-end">
+
             <div class="pageNumCenter" style="margin-right:30px">2</div>
             <a href="#" class="ref-center" th:text="'View all ' + ${#numbers.formatInteger(total, 3, 'COMMA')}"> </a>
         </section>
@@ -52,20 +53,24 @@
 
 
 
-<footer>
-    <a  href="/"><button  class="plus"><i class="glyphicon glyphicon-plus" style="color: white;"></i></button></a>
-    <div class="pageNumBottom text-center">1</div>
+<footer class="text-center">
+<!--    <form th:action="@{/}" method="GET" >-->
+<!--        <button type="submit" name="text" th:value="${searching}" />-->
+<!--    </form>-->
+    <form th:action="@{/}" method="GET" style="margin-right:48%" >
+        <button type="submit" class="plus" name="text" th:value="${searching}" >
+            <i class="glyphicon glyphicon-plus" style="color: white;"></i>
+        </button>
+    </form>
+    <div class="pageNumBottom text-center" th:text="${curPage}"></div>
 </footer>
 <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 <script src="jquery.picEyes.js"></script>
 
 <script>
     function display_function(large_id, title, region, place){
-
         console.log("LargeUrl:" + large_id +"\nCountry: " + title+  "\nRegion: "+ region +"\nPlace: " + place);
-
     }
-
 </script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

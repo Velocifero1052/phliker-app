@@ -46,10 +46,6 @@ public class DemoApplication {
 
         SpringApplication.run(DemoApplication.class);
 
-
-
-
-        //log.info(quote.toString());
     }
 
 }
