@@ -36,7 +36,6 @@ public class HomeController {
             searched = text;
             urls.clear();
         }
-
         System.out.println(text);
 
         String searchUrl = new String(String.format("https://api.flickr.com/services/rest/?&method=flickr.photos.search&api_key=8c3a08d2ae655faaaa9e19146ec0985d&text={SEARCH_TEXT}&format=json&page=%d", mPageNumber));
@@ -64,17 +63,21 @@ public class HomeController {
                     .replace("{secret}", photoArray.get(i).getSecret()));
         }
 
-        ArrayList<ArrayList<String>> issued = new ArrayList<ArrayList<String>>(13); // 100 / 8
+        ArrayList<ArrayList<String>> issued = new ArrayList<ArrayList<String>>(urls.size() / 8); // 100 / 8
 
-        for (int i = 0; i < urls.size(); ) {
+//        for (int i = 0; i < urls.size(); ) {
+//            issued.add(new ArrayList<String>(urls.subList(i, Math.min(i + 8, urls.size()))));
+//            i = Math.min(i + 9, urls.size());
+//        }
+        int i = 0;
+        while(i + 9 < urls.size()){
             issued.add(new ArrayList<String>(urls.subList(i, Math.min(i + 8, urls.size()))));
-            i = Math.min(i + 9, urls.size());
+            i += 9;
         }
 
         model.addAttribute("photoList", issued);
 
         return "home";
     }
-
 
 }

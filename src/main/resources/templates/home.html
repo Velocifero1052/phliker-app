@@ -6,7 +6,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <!--<link rel="stylesheet" href="css/style.css">-->
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
@@ -33,7 +32,7 @@
 
 <section class="section1">
         <section style="display:flex; flex-direction: column; align-items: flex-end">
-            <div class="pageNumCenter" style="margin-right:30px">2</div>
+            <div class="pageNumCenter" style="margin-right:30px">1</div>
             <a href="#" class="ref-center" th:text="'View all ' + ${#numbers.formatInteger(total, 3, 'COMMA')}"> </a>
         </section>
     </div>
@@ -45,24 +44,75 @@
 </section>
 
 <footer class="text-center">
-<!--    <form th:action="@{/}" method="GET" >-->
-<!--        <button type="submit" name="text" th:value="${searching}" />-->
-<!--    </form>-->
-    <form th:action="@{/}" method="GET" style="margin-right:48%" >
-        <button type="submit" class="plus" name="text" th:value="${searching}" >
-            <i class="glyphicon glyphicon-plus" style="color: white;"></i>
-        </button>
-    </form>
-    <div class="pageNumBottom text-center" th:text="${curPage}"></div>
+    <button class="plus" th:onclick="cl2([[${searching}]])">
+        <i class="glyphicon glyphicon-plus" style="color: white;"></i>
+    </button>
+    <div class="pageNumBottom text-center" text="">2</div>
 </footer>
-<button th:onclick="cl()">onclick text</button>
 
-<div>
-    <p class="greeting-id">The ID is </p>
-    <p class="greeting-content">The content is </p>
-</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
 <script>
+
+    function cl2(searching) {
+        $(document).ready(function(){
+           $.ajax({url: "http://localhost:8080/nextPage"})
+               .then(function(data){
+                   var pageNumber = JSON.parse(data);
+                   console.log(pageNumber);
+                   $(".pageNumBottom").html(pageNumber.page + 1);
+                   $(".pageNumCenter").html(pageNumber.page);
+               });
+        });
+        $(document).ready(function () {
+            $.ajax({
+                url: "http://localhost:8080/ajax?text=[[${searching}]]"
+            }).then(function (data) {
+                var someData = JSON.parse(data);
+                var photo = someData.photos.photo;
+                var stringOne = "https://farm";
+                var stringTwo = ".staticflickr.com/";
+                var stringThree = "/";
+                var stringFour = "_";
+                var stringFive = ".jpg";
+                var resString = stringOne + photo[0].farm + stringTwo + photo[0].server  + stringThree +  photo[0].id + stringFour+ photo[0].secret + stringFive;
+
+                var urls = new Array();
+                for(var i = 0; i < photo.length; i++){
+                    urls.push(stringOne + photo[i].farm
+                        + stringTwo + photo[i].server  + stringThree
+                        +  photo[i].id + stringFour
+                        + photo[i].secret + stringFive
+                    );
+                }
+                console.log(urls);
+                console.log(resString);
+                console.log(photo[0]);
+                // $('.greeting-id').append(data.id)
+                var i = 0;
+                while(i + 9 < urls.length) {
+                    $('table').append('<tr>' +
+                        '<td><a href = "' + urls[i]+'"><img src="'+ urls[i]+'"></a></td>' +
+                        '<td><a href = "' + urls[i + 1]+'"><img src="'+ urls[i + 1]+'"></a></td>' +
+                        '<td><a href = "' + urls[i + 2]+'"><img src="'+ urls[i + 2]+'"></a></td>' +
+                        '<td><a href = "' + urls[i + 3]+'"><img src="'+ urls[i + 3]+'"></a></td>' +
+                        '<td><a href = "' + urls[i + 4]+'"><img src="'+ urls[i + 4]+'"></a></td>' +
+                        '<td><a href = "' + urls[i + 5]+'"><img src="'+ urls[i + 5]+'"></a></td>' +
+                        '<td><a href = "' + urls[i + 6]+'"><img src="'+ urls[i + 6]+'"></a></td>' +
+                        '<td><a href = "' + urls[i + 7]+'"><img src="'+ urls[i + 7]+'"></a></td>' +
+                        '</tr>');
+                    i += 9;
+                }
+
+
+                //alert(data);
+            });
+        });
+
+
+
+    }
+
     function cl() {
         $(document).ready(function () {
             $.ajax({
@@ -73,6 +123,8 @@
             });
         });
     }
+
+   // $("html, body").animate({ scrollTop: $(document).height() }, 300);
 </script>
 
 
