@@ -1,42 +1,16 @@
 package controllers;
 
-import models.Photo;
-import models.Photos;
-import models.Resp;
-import org.json.JSONObject;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
-
-class Greeting {
-    private final long id;
-    private final String content;
-
-    public Greeting(long id, String content) {
-        this.id = id;
-        this.content = content;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public String getContent() {
-        return content;
-    }
-}
-
 
 @RestController
 public class ControllerForJson {
 
     private int mPageNumber = 2;
-    String searched = new String();
+    private String searched = new String();
 
     @RequestMapping(value = "/nextPage")
     public String nextPageReturn(){

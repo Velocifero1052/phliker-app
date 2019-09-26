@@ -5,11 +5,8 @@ import models.SearchText;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
-
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.JarOutputStream;;
 import models.Resp;
 import models.Photos;
 import models.Photo;
@@ -31,7 +28,7 @@ public class HomeController {
         if (text == null) {
             return "home";
         }
-        if(!searched.equals(text)){
+        if (!searched.equals(text)) {
             mPageNumber = 1;
             searched = text;
             urls.clear();
@@ -65,12 +62,8 @@ public class HomeController {
 
         ArrayList<ArrayList<String>> issued = new ArrayList<ArrayList<String>>(urls.size() / 8); // 100 / 8
 
-//        for (int i = 0; i < urls.size(); ) {
-//            issued.add(new ArrayList<String>(urls.subList(i, Math.min(i + 8, urls.size()))));
-//            i = Math.min(i + 9, urls.size());
-//        }
         int i = 0;
-        while(i + 9 < urls.size()){
+        while (i + 9 < urls.size()) {
             issued.add(new ArrayList<String>(urls.subList(i, Math.min(i + 8, urls.size()))));
             i += 9;
         }
